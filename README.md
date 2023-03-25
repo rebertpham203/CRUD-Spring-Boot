@@ -1,2 +1,1 @@
-# crud_jsp_servlet
-demo
+demo crud jsp_servlet bằng hibernate
