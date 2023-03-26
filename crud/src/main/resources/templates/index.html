@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang index</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<section class="container w-75 mt-5">
+    <h1 class="text-center text-secondary">USER MANAGEMENT</h1>
+    <h5 th:if="${success}" class="alert alert-success text-center">[[${success}]]</h5>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>Gender</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="x : ${listUser}">
+            <td th:text="${x.id}"></td>
+            <td th:text="${x.name}"></td>
+            <td th:text="${x.email}"></td>
+            <td th:text="${x.gender == true} ? 'Male' : 'Female'"></td>
+            <td th:text="${x.role == 0} ? 'admin' : 'user'"></td>
+            <td>
+                <a class="btn btn-danger" th:href="@{'/admin/users/detail/'+${x.id}}">detail</a>
+                <a class="btn btn-danger" th:href="@{'/admin/users/view-update/'+${x.id}}">edit</a>
+                <a class="btn btn-danger" th:href="@{/admin/users/remove/{id}(id=${x.id})}">remove</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" th:href="@{/admin/users/view-add}">ADD</a>
+</section>
+</body>
+</html>

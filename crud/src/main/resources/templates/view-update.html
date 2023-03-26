@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang add</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<section class="container w-50 mt-5">
+    <form th:action="@{/admin/users/update/{id}(id=${user.id})}" th:object="${user}" method="post">
+        <div class="row mb-3">
+            <div class="form-group col-md-6">
+                <label>Name</label>
+                <input class="form-control" th:field="*{name}"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Email</label>
+                <input class="form-control" th:field="*{email}"/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="form-group col-md-6">
+                <label>Gender</label>
+                <br/>
+                <div class="form-check form-check-inline pt-3">
+                    <input class="form-check-input" type="radio" th:value="true" name="gender" th:checked="${user.gender==true}"/>
+                    <label class="form-check-label">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" th:value="false" name="gender" th:checked="${user.gender==false}"/>
+                    <label class="form-check-label">Female</label>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Role</label>
+                <select class="form-select" aria-label="Default select example" name="role" th:field="*{role}">
+                    <option value="1" th:selected="${user.role==1}">user</option>
+                    <option value="0" th:selected="${user.role==0}">admin</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-center ">Update</button>
+    </form>
+</section>
+</body>
+</html>
